@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="abstract-factory-pattern" />
         <module name="adapter-pattern" />
+        <module name="annotation" />
         <module name="bridge-pattern" />
         <module name="builder-pattern" />
         <module name="business-delegate-pattern" />
@@ -22,6 +23,7 @@
         <module name="filter-pattern" />
         <module name="flyweight-pattern" />
         <module name="front-controller-pattern" />
+        <module name="genericity" />
         <module name="intercepting-filter-pattern" />
         <module name="interpreter-pattern" />
         <module name="iterator-pattern" />
