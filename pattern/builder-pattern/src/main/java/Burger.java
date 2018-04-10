@@ -1,8 +1,8 @@
-public abstract class Burger implements Item{
+public abstract class Burger implements IItem {
     @Override
     public abstract String name();
     @Override
-    public Packing packing() {
+    public IPacking packing() {
         return new Wrapper();
     }
     @Override

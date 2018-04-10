@@ -1,10 +1,10 @@
 import java.util.List;
 
-public class AndCriteria implements  Criteria {
-    private Criteria criteria;
-    private Criteria otherCriteria;
+public class AndCriteria implements ICriteria {
+    private ICriteria criteria;
+    private ICriteria otherCriteria;
 
-    public AndCriteria(Criteria criteria, Criteria otherCriteria) {
+    public AndCriteria(ICriteria criteria, ICriteria otherCriteria) {
         this.criteria = criteria;
         this.otherCriteria = otherCriteria;
     }

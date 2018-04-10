@@ -1,6 +1,6 @@
 public class ShapeFactory {
 
-    public Shape getShape(String type) {
+    public IShape getShape(String type) {
         if (type == null) {
             return null;
         }

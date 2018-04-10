@@ -1,4 +1,4 @@
-public class Mp4Player implements AdvancedMediaPlayer {
+public class Mp4Player implements IAdvancedMediaPlayer {
     @Override
     public void playVlc(String name) {
 

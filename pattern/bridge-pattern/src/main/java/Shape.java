@@ -1,8 +1,8 @@
 public abstract class Shape {
 
-    protected DrawAPI drawAPI;
+    protected IDrawAPI drawAPI;
 
-    public Shape(DrawAPI drawAPI) {
+    public Shape(IDrawAPI drawAPI) {
         this.drawAPI = drawAPI;
     }
 

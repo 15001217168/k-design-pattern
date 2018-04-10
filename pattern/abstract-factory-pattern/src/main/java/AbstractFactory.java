@@ -1,5 +1,5 @@
 
 public abstract class AbstractFactory {
-    abstract Color getColor(String color);
-    abstract Shape getShape(String shape);
+    abstract IColor getColor(String color);
+    abstract IShape getShape(String shape);
 }

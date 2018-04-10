@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class Meal {
 
-    private List<Item> _items = new ArrayList<Item>();
+    private List<IItem> _items = new ArrayList<IItem>();
 
-    public void addItem(Item item) {
+    public void addItem(IItem item) {
         _items.add(item);
     }
 
     public float getCost() {
         float cost = 0f;
-        for (Item i : _items) {
+        for (IItem i : _items) {
             cost += i.price();
         }
         return cost;
     }
 
     public void showItems() {
-        for (Item i : _items) {
+        for (IItem i : _items) {
             System.out.print("Item : " + i.name());
             System.out.print(", Packing : " + i.packing().pack());
             System.out.println(", Price : " + i.price());

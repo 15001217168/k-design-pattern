@@ -11,11 +11,11 @@ public class Test {
         persons.add(new Person("Mike", "Male", "Single"));
         persons.add(new Person("Bobby", "Male", "Single"));
 
-        Criteria male = new CriteriaMale();
-        Criteria female = new CriteriaFemale();
-        Criteria single = new CriteriaSingle();
-        Criteria singleMale = new AndCriteria(single, male);
-        Criteria singleOrFemale = new OrCriteria(single, female);
+        ICriteria male = new CriteriaMale();
+        ICriteria female = new CriteriaFemale();
+        ICriteria single = new CriteriaSingle();
+        ICriteria singleMale = new AndCriteria(single, male);
+        ICriteria singleOrFemale = new OrCriteria(single, female);
 
         System.out.println("Males: ");
         printPersons(male.meetCriteria(persons));

@@ -1,11 +1,11 @@
 public class ShapeFactory extends AbstractFactory {
     @Override
-   public Color getColor(String color) {
+   public IColor getColor(String color) {
         return null;
     }
 
     @Override
-   public Shape getShape(String shape) {
+   public IShape getShape(String shape) {
         if(shape == null){
             return null;
         }

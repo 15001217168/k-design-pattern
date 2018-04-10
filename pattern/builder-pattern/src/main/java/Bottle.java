@@ -1,4 +1,4 @@
-public class Bottle implements Packing {
+public class Bottle implements IPacking {
     @Override
     public String pack() {
         return "Bottle";

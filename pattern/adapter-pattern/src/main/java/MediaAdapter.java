@@ -1,5 +1,5 @@
-public class MediaAdapter implements MediaPlayer {
-    private AdvancedMediaPlayer _player;
+public class MediaAdapter implements IMediaPlayer {
+    private IAdvancedMediaPlayer _player;
 
     public MediaAdapter(String type) {
         if (type.equalsIgnoreCase("mp4")) {

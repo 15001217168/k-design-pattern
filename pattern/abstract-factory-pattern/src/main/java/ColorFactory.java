@@ -1,6 +1,6 @@
 public class ColorFactory extends AbstractFactory {
     @Override
-   public Color getColor(String color) {
+   public IColor getColor(String color) {
         if(color==null)
         {
             return  null;
@@ -17,7 +17,7 @@ public class ColorFactory extends AbstractFactory {
     }
 
     @Override
-   public Shape getShape(String shape) {
+   public IShape getShape(String shape) {
         return null;
     }
 }

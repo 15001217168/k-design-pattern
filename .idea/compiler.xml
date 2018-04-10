@@ -11,12 +11,24 @@
         <module name="adapter-pattern" />
         <module name="bridge-pattern" />
         <module name="builder-pattern" />
+        <module name="chain-of-responsibility-pattern" />
+        <module name="command-pattern" />
         <module name="composite-pattern" />
+        <module name="decorator-pattern" />
+        <module name="facade-pattern" />
         <module name="factory-pattern" />
         <module name="factorypattern" />
         <module name="filter-pattern" />
+        <module name="flyweight-pattern" />
+        <module name="interpreter-pattern" />
+        <module name="iterator-pattern" />
+        <module name="mediator-pattern" />
+        <module name="memento-pattern" />
+        <module name="observer-pattern" />
         <module name="prototype-pattern" />
+        <module name="proxy-pattern" />
         <module name="singleton-pattern" />
+        <module name="state-pattern" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

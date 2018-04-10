@@ -1,10 +1,10 @@
 import java.util.List;
 
-public class OrCriteria implements  Criteria {
-    private Criteria criteria;
-    private Criteria otherCriteria;
+public class OrCriteria implements ICriteria {
+    private ICriteria criteria;
+    private ICriteria otherCriteria;
 
-    public OrCriteria(Criteria criteria, Criteria otherCriteria) {
+    public OrCriteria(ICriteria criteria, ICriteria otherCriteria) {
         this.criteria = criteria;
         this.otherCriteria = otherCriteria;
     }

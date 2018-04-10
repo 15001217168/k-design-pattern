@@ -1,8 +1,8 @@
-public abstract class ColdDrink implements  Item{
+public abstract class ColdDrink implements IItem {
     @Override
     public abstract String name();
     @Override
-    public Packing packing() {
+    public IPacking packing() {
         return new Bottle();
     }
     @Override
