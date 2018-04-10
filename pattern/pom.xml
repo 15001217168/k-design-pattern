@@ -14,5 +14,13 @@
     <modules>
         <module>factory-pattern</module>
         <module>abstract-factory-pattern</module>
+        <module>singleton-pattern</module>
+        <module>singleton-pattern</module>
+        <module>builder-pattern</module>
+        <module>prototype-pattern</module>
+        <module>adapter-pattern</module>
+        <module>bridge-pattern</module>
+        <module>filter-pattern</module>
+        <module>composite-pattern</module>
     </modules>
 </project>

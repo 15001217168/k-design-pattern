@@ -6,9 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="abstract-factory-pattern" />
         <module name="abstractfactorypattern" />
+        <module name="adapter-pattern" />
+        <module name="bridge-pattern" />
+        <module name="builder-pattern" />
+        <module name="composite-pattern" />
+        <module name="factory-pattern" />
         <module name="factorypattern" />
+        <module name="filter-pattern" />
+        <module name="prototype-pattern" />
+        <module name="singleton-pattern" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="singletonpattern" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
