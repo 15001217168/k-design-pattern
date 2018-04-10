@@ -24,11 +24,13 @@
         <module name="iterator-pattern" />
         <module name="mediator-pattern" />
         <module name="memento-pattern" />
+        <module name="null-object-pattern" />
         <module name="observer-pattern" />
         <module name="prototype-pattern" />
         <module name="proxy-pattern" />
         <module name="singleton-pattern" />
         <module name="state-pattern" />
+        <module name="strategy-pattern" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
