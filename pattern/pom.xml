@@ -37,5 +37,15 @@
         <module>state-pattern</module>
         <module>null-object-pattern</module>
         <module>strategy-pattern</module>
+        <module>template-pattern</module>
+        <module>visitor-pattern</module>
+        <module>model-view-controller-pattern</module>
+        <module>business-delegate-pattern</module>
+        <module>composite-entity-pattern</module>
+        <module>data-access-object-pattern</module>
+        <module>front-controller-pattern</module>
+        <module>intercepting-filter-pattern</module>
+        <module>service-locator-pattern</module>
+        <module>transfer-object-pattern</module>
     </modules>
 </project>

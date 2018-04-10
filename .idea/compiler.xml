@@ -7,30 +7,38 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="abstract-factory-pattern" />
-        <module name="abstractfactorypattern" />
         <module name="adapter-pattern" />
         <module name="bridge-pattern" />
         <module name="builder-pattern" />
+        <module name="business-delegate-pattern" />
         <module name="chain-of-responsibility-pattern" />
         <module name="command-pattern" />
+        <module name="composite-entity-pattern" />
         <module name="composite-pattern" />
+        <module name="data-access-object-pattern" />
         <module name="decorator-pattern" />
         <module name="facade-pattern" />
         <module name="factory-pattern" />
-        <module name="factorypattern" />
         <module name="filter-pattern" />
         <module name="flyweight-pattern" />
+        <module name="front-controller-pattern" />
+        <module name="intercepting-filter-pattern" />
         <module name="interpreter-pattern" />
         <module name="iterator-pattern" />
         <module name="mediator-pattern" />
         <module name="memento-pattern" />
+        <module name="model-view-controller-pattern" />
         <module name="null-object-pattern" />
         <module name="observer-pattern" />
         <module name="prototype-pattern" />
         <module name="proxy-pattern" />
+        <module name="service-locator-pattern" />
         <module name="singleton-pattern" />
         <module name="state-pattern" />
         <module name="strategy-pattern" />
+        <module name="template-pattern" />
+        <module name="transfer-object-pattern" />
+        <module name="visitor-pattern" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
