@@ -34,6 +34,7 @@
         <module name="observer-pattern" />
         <module name="prototype-pattern" />
         <module name="proxy-pattern" />
+        <module name="reflect" />
         <module name="service-locator-pattern" />
         <module name="singleton-pattern" />
         <module name="state-pattern" />
