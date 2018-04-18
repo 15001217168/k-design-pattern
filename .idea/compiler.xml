@@ -9,6 +9,7 @@
         <module name="abstract-factory-pattern" />
         <module name="adapter-pattern" />
         <module name="annotation" />
+        <module name="async" />
         <module name="bridge-pattern" />
         <module name="builder-pattern" />
         <module name="business-delegate-pattern" />
