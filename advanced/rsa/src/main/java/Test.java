@@ -1,35 +1,35 @@
 import java.awt.geom.RectangularShape;
+import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 
 public class Test {
 
+    public static String SignPublicKeyJava = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8rGjnIGvARYu8yLZcMMPwqTBHjgD36jjsW6ilzOP7/lU0EnmZzByHihs9zHHtE2aEodDtVZ6igIXvbJfkmZ38dXXiSl/pqEEs86TJebWaG6Libk4Bx4jKnPWRC0pxkT2tiFj5wptLhClqje0PijzzIxkJocLOmAgD1scev5JpqwIDAQAB";
+    public static String SignPrivateKeyJava ="MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALysaOcga8BFi7zItlwww/CpMEeOAPfqOOxbqKXM4/v+VTQSeZnMHIeKGz3Mce0TZoSh0O1VnqKAhe9sl+SZnfx1deJKX+moQSzzpMl5tZobouJuTgHHiMqc9ZELSnGRPa2IWPnCm0uEKWqN7Q+KPPMjGQmhws6YCAPWxx6/kmmrAgMBAAECgYAUuxj3tF9CjCGzh5ZKAO22ptBwPFEs7GZ+yf944E94o9R22UTVOlE0L1+Y5brq4sPT9PfA7DR3BIoy6YqzCpIKOAqNbDYukHY7agoxCsD0D3QBWkOalYwYeSKXoa9YYuHIGLhECaabPtXJuYJPY9z9s9ZdyT1Fp50aYE9088gUmQJBANbD+WTKROgUbnJC0pZQOf+owx2JwDX37BKKYZClSH6xzfjT1w2CwCVNPvpSeDE6l/aexnpIt8FAqgyrqybtS3UCQQDg5fmUFL63HdpU9Vq3Ym5r9q5KXnroCVBmsCBcNvN0O8dMGmvWhq8VTfvAHKysAaABfpPMCeUtx5mWkJTc+NyfAkEAtkEZI6+DSnAMSmrqyyTKE2vkKOz9cM80R4enxFh/bQT3BnK/zXdoGD+1cjkKRryyuVeEl8GeLyHxLU+Br0cxAQJAE4sIgBy5YfI/KcjUZEEydUFPbfj91zIQAYxmk3zW9Q/Ixs0498BmcISBTvVu79eITvjv4PgvKSZCK3pO5VDe4wJAfQujIjtGZAYhhzdb3yBi7Wau+8nLyGagjbGezJhrn/B5kiYdZOPaNM7+sEJz6piSmjsDtZXq1NxocHnZGKFJDA==";
 
-    public static String SignPublicKey = "<RSAKeyValue><Modulus>vKxo5yBrwEWLvMi2XDDD8KkwR44A9+o47Fuopczj+/5VNBJ5mcwch4obPcxx7RNmhKHQ7VWeooCF72yX5Jmd/HV14kpf6ahBLPOkyXm1mhui4m5OAceIypz1kQtKcZE9rYhY+cKbS4Qpao3tD4o88yMZCaHCzpgIA9bHHr+Saas=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-    public static String SignPrivateKey = "<RSAKeyValue><Modulus>vKxo5yBrwEWLvMi2XDDD8KkwR44A9+o47Fuopczj+/5VNBJ5mcwch4obPcxx7RNmhKHQ7VWeooCF72yX5Jmd/HV14kpf6ahBLPOkyXm1mhui4m5OAceIypz1kQtKcZE9rYhY+cKbS4Qpao3tD4o88yMZCaHCzpgIA9bHHr+Saas=</Modulus><Exponent>AQAB</Exponent><P>1sP5ZMpE6BRuckLSllA5/6jDHYnANffsEophkKVIfrHN+NPXDYLAJU0++lJ4MTqX9p7Geki3wUCqDKurJu1LdQ==</P><Q>4OX5lBS+tx3aVPVat2Jua/auSl566AlQZrAgXDbzdDvHTBpr1oavFU37wBysrAGgAX6TzAnlLceZlpCU3Pjcnw==</Q><DP>tkEZI6+DSnAMSmrqyyTKE2vkKOz9cM80R4enxFh/bQT3BnK/zXdoGD+1cjkKRryyuVeEl8GeLyHxLU+Br0cxAQ==</DP><DQ>E4sIgBy5YfI/KcjUZEEydUFPbfj91zIQAYxmk3zW9Q/Ixs0498BmcISBTvVu79eITvjv4PgvKSZCK3pO5VDe4w==</DQ><InverseQ>fQujIjtGZAYhhzdb3yBi7Wau+8nLyGagjbGezJhrn/B5kiYdZOPaNM7+sEJz6piSmjsDtZXq1NxocHnZGKFJDA==</InverseQ><D>FLsY97RfQowhs4eWSgDttqbQcDxRLOxmfsn/eOBPeKPUdtlE1TpRNC9fmOW66uLD0/T3wOw0dwSKMumKswqSCjgKjWw2LpB2O2oKMQrA9A90AVpDmpWMGHkil6GvWGLhyBi4RAmmmz7VybmCT2Pc/bPWXck9RaedGmBPdPPIFJk=</D></RSAKeyValue>";
+    public static String PublicKeyJava = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC61CIS5sG8/D0USFucpBdQILkC7xwgZiiHEyeyBRejfChZ3PL+aMA0p3Z75LahcJj0Bq02jJPjrtf2Q3HOXSNu6I76+oCVZji+geb2P5p4raXgVMinkjuc3gzPcQJ/0vIl8OkQiHPDgWEMTM8brDrd3YLe1n3802s0eihg0NeTWQIDAQAB";
+    public static String PrivateKeyJava = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALrUIhLmwbz8PRRIW5ykF1AguQLvHCBmKIcTJ7IFF6N8KFnc8v5owDSndnvktqFwmPQGrTaMk+Ou1/ZDcc5dI27ojvr6gJVmOL6B5vY/mnitpeBUyKeSO5zeDM9xAn/S8iXw6RCIc8OBYQxMzxusOt3dgt7WffzTazR6KGDQ15NZAgMBAAECgYAPlTR/W5hitS46BBwCCWy5XfVYgY2YxTSRqZ8YudSCKg+qiSOKZT3M1n/rLwUtm3jid7EYWOrX5YQ1UeRK6FlVWLt6n1Uj70MjzbJcvMW2ThLu8M/uSILfqT3ACe9f0dp6n4SpEvmRBzkP871uUpjEnrgjftHocqiO72BJbJECgQJBAL1f7sWYPVTERHkI6ACyOnzpVmk7X/pw3aPbNMqYBL2VLW880uLsfQG4zCK674srmMbffJAGET5CIHDAuqzkxZkCQQD8juLcsoVENOLmqPNGghjN63PurBpX6pXSW5mcbtMGXNfRPYAPmSRYDkqMDv6SOhmdzyCeGOJFglxWhzZDflPBAkAexK9uu0V7uEfHwoKvWkXWdbLsdhEqB5x7Oupg4EIk60/uettoszO8S+Ie4nB5FCRGa5k5bULv8p6Cs02hOapBAkEA8Tl4rdtFNnRdFHrigcHY9zWgsaJoNvi0yQr8mVGw9S7QY+Yd3sgi0ogz47qepAQiW3xuZxLVbBarI2paBfUvAQJBAJWrcIacRZAqGGsZRjwuh/V1aySglECfKO4KPhNfpe5UFGVJ+pLj4WBXVCFo9HF6i3ELlDAc8CArxBSNeKH2/MY=";
 
-
-    public static String PublicKey = "<RSAKeyValue><Modulus>utQiEubBvPw9FEhbnKQXUCC5Au8cIGYohxMnsgUXo3woWdzy/mjANKd2e+S2oXCY9AatNoyT467X9kNxzl0jbuiO+vqAlWY4voHm9j+aeK2l4FTIp5I7nN4Mz3ECf9LyJfDpEIhzw4FhDEzPG6w63d2C3tZ9/NNrNHooYNDXk1k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-    public static String PrivateKey = "<RSAKeyValue><Modulus>utQiEubBvPw9FEhbnKQXUCC5Au8cIGYohxMnsgUXo3woWdzy/mjANKd2e+S2oXCY9AatNoyT467X9kNxzl0jbuiO+vqAlWY4voHm9j+aeK2l4FTIp5I7nN4Mz3ECf9LyJfDpEIhzw4FhDEzPG6w63d2C3tZ9/NNrNHooYNDXk1k=</Modulus><Exponent>AQAB</Exponent><P>vV/uxZg9VMREeQjoALI6fOlWaTtf+nDdo9s0ypgEvZUtbzzS4ux9AbjMIrrviyuYxt98kAYRPkIgcMC6rOTFmQ==</P><Q>/I7i3LKFRDTi5qjzRoIYzetz7qwaV+qV0luZnG7TBlzX0T2AD5kkWA5KjA7+kjoZnc8gnhjiRYJcVoc2Q35TwQ==</Q><DP>HsSvbrtFe7hHx8KCr1pF1nWy7HYRKgecezrqYOBCJOtP7nrbaLMzvEviHuJweRQkRmuZOW1C7/KegrNNoTmqQQ==</DP><DQ>8Tl4rdtFNnRdFHrigcHY9zWgsaJoNvi0yQr8mVGw9S7QY+Yd3sgi0ogz47qepAQiW3xuZxLVbBarI2paBfUvAQ==</DQ><InverseQ>latwhpxFkCoYaxlGPC6H9XVrJKCUQJ8o7go+E1+l7lQUZUn6kuPhYFdUIWj0cXqLcQuUMBzwICvEFI14ofb8xg==</InverseQ><D>D5U0f1uYYrUuOgQcAglsuV31WIGNmMU0kamfGLnUgioPqokjimU9zNZ/6y8FLZt44nexGFjq1+WENVHkSuhZVVi7ep9VI+9DI82yXLzFtk4S7vDP7kiC36k9wAnvX9Haep+EqRL5kQc5D/O9blKYxJ64I37R6HKoju9gSWyRAoE=</D></RSAKeyValue>";
     public static void main(String[] args) {
 
 
-
-        String OrgCode ="kDO/bU8ieiljCt8AzL3UuhizkRcCAVPAsz9vRed+ap7325QHgzG1tsgmCZLGcOXcQ/A1IwlNANLi9bmDFU7naDbdWI2adtQkmh6wDuTrF1H8jkLXui7WN4YzXyDVY7C1LpXjZJy4+KZMXuFzF12YQF+4+2lvzwo3D6BkmtvGQJs=";
-        String sourceSign = "qn6FiobfNOih9zh5rAEIk3+u1pgSxLrbxlnhes5Ft9BfCy6dbduBZYZ/nxC6s/Ur5WS+Xvoo1UX2Vl50j664/Bv7ek06fp/EvnVEO+XmWWBmNgKSb90XH7uyzPArlC4QGWohPQDh5PbfdFAJOgeECnkxCVpXY3j2VEuIGKlxeHw=";
+        String OrgCode = "27686CD4EF6895E86E003AE5C1810021C126B16090C2C4B710ED1BF48CF6B90494058AF5B0C7706E95C1B024C5EFE4268CC6AD5E80C723B3CCA6C47A4B5EC00DCE890F28A81EF146217F6A7B63D411A1EB44039DEF6E6CC17DBB8476678A01067CBB22193329850B528A9CC9DE07CAE7F1250C5B2C0595D3CDE6CD9FB2CFDBF6";
+        String sourceSign = "5750E56E49E4502FDF8DFFB35A7D0A4146CA256F57E639D279E85DCBADDFD5A35EC12C5239B563507EAFBE976F6CE940F7A8A78B0EC7A6AAC0FB49E5F9C2D304D5FE5208100F734CB7E20E749818C2F281079FB665288DADEF180ECE3CEFD843F2F50E79EEC98D1A4EAEC6A4738C68D7D64899409DE383F6C1AEA62A42FB0759";
         String Sign = "abcdefg";
-        String org="1234";
+        String org = "1234";
 
         RSA rsa = new RSA();
         //先验证签名
         //使用公钥验签
         try {
 
+            // OrgCode=rsa.RSAEncrypt(PublicKeyJava,org);
+            org = rsa.RSADecrypt(PrivateKeyJava, OrgCode);
 
-            OrgCode=rsa.RSAEncrypt(PublicKey,org);
-             org = rsa.RSADecrypt(PrivateKey, OrgCode);
-            boolean succ = rsa.RSAVerify(SignPublicKey, Sign, sourceSign);
+           // sourceSign = rsa.RSASign(SignPrivateKeyJava, Sign);
+            boolean succ = rsa.RSAVerify(SignPublicKeyJava, Sign, sourceSign);
             if (succ) {
                 //使用私钥解密获取企业编码
             }

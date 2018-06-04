@@ -59,25 +59,45 @@ public class RSA {
         }
     }
 
+    private PublicKey ConvertPublicKeyJava(String key) throws Exception {
+
+        X509EncodedKeySpec bobPubKeySpec = new java.security.spec.X509EncodedKeySpec(
+                new BASE64Decoder().decodeBuffer(key));
+        // RSA对称加密算法
+        java.security.KeyFactory keyFactory;
+        keyFactory = java.security.KeyFactory.getInstance("RSA");
+        // 取公钥匙对象
+        return keyFactory.generatePublic(bobPubKeySpec);
+    }
+
     private PrivateKey ConvertPrivateKey(String key) throws Exception {
 
         Document document = DocumentHelper.parseText(key);
         String mudulus = (String) document.getRootElement().element("Modulus").getData();
         String exponent = (String) document.getRootElement().element("Exponent").getData();
-
         try {
             byte[] m = (new BASE64Decoder()).decodeBuffer(mudulus);
             byte[] e = (new BASE64Decoder()).decodeBuffer(exponent);
-            ;
+
             BigInteger b1 = new BigInteger(1, m);
             BigInteger b2 = new BigInteger(1, e);
+
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(b1, b2);
-            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+            RSAPrivateKey privateKey = (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+            return privateKey;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private PrivateKey ConvertPrivateKeyJava(String key) throws Exception {
+
+        PKCS8EncodedKeySpec priPKCS8;
+        priPKCS8 = new PKCS8EncodedKeySpec(new BASE64Decoder().decodeBuffer(key));
+        KeyFactory keyf = KeyFactory.getInstance("RSA");
+        return keyf.generatePrivate(priPKCS8);
     }
 
     /// <summary>
@@ -89,32 +109,11 @@ public class RSA {
     public String RSAEncrypt(String xmlPublicKey, String encryptString) {
         String Result = "";
         try {
-            PublicKey publicKey = ConvertPublicKey(xmlPublicKey);
+            PublicKey publicKey = ConvertPublicKeyJava(xmlPublicKey);
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             byte[] enBytes = cipher.doFinal(encryptString.getBytes("utf-8"));
-            Result = (new BASE64Encoder()).encodeBuffer(enBytes);
-
-        } catch (Exception ex) {
-
-        }
-        return Result;
-    }
-
-    /// <summary>
-    /// RSA的加密函数
-    /// </summary>
-    /// <param name="xmlPublicKey">公钥</param>
-    /// <param name="EncryptString">待加密的字节数组</param>
-    /// <returns></returns>
-    public String RSAEncrypt(String xmlPublicKey, byte[] EncryptString) {
-        String Result = "";
-        try {
-            PublicKey publicKey = ConvertPublicKey(xmlPublicKey);
-            Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-            byte[] enBytes = cipher.doFinal(EncryptString);
-            Result = (new BASE64Encoder()).encodeBuffer(enBytes);
+            Result = Bytes2Hex(enBytes);
 
         } catch (Exception ex) {
 
@@ -131,34 +130,13 @@ public class RSA {
     public String RSADecrypt(String xmlPrivateKey, String decryptString) throws Exception {
         String Result = "";
 
-        PrivateKey privateKey = ConvertPrivateKey(xmlPrivateKey);
+        PrivateKey privateKey = ConvertPrivateKeyJava(xmlPrivateKey);
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] source = (new BASE64Decoder()).decodeBuffer(decryptString);
+        byte[] source = Hex2Bytes(decryptString);
         byte[] bt_original = cipher.doFinal(source);
         Result = new String(bt_original, "utf-8");
 
-        return Result;
-    }
-
-    /// <summary>
-    /// RSA的解密函数
-    /// </summary>
-    /// <param name="xmlPrivateKey">私钥</param>
-    /// <param name="DecryptString">待解密的字节数组</param>
-    /// <returns></returns>
-    public String RSADecrypt(String xmlPrivateKey, byte[] DecryptString) {
-        String Result = "";
-        try {
-
-            PrivateKey privateKey = ConvertPrivateKey(xmlPrivateKey);
-            Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.DECRYPT_MODE, privateKey);
-            byte[] bt_original = cipher.doFinal((new BASE64Decoder()).decodeBuffer(new String(DecryptString, "utf-8")));
-            Result = new String(bt_original, "utf-8");
-
-        } catch (Exception ex) {
-        }
         return Result;
     }
 
@@ -169,12 +147,12 @@ public class RSA {
     /// <param name="signText">待签名的字符串</param>
     /// <returns></returns>
     public String RSASign(String xmlprivateKey, String signText) throws Exception {
-        PrivateKey priK = ConvertPrivateKey(xmlprivateKey);
-        Signature sig = Signature.getInstance("SHA1withRSA");
+        PrivateKey priK = ConvertPrivateKeyJava(xmlprivateKey);
+        Signature sig = Signature.getInstance("SHA256withRSA");
         sig.initSign(priK);
         byte[] bytes = signText.getBytes("utf-8");
         sig.update(bytes);
-        return new String((new BASE64Encoder()).encode(sig.sign()));
+        return Bytes2Hex(sig.sign());
     }
 
     /// <summary>
@@ -185,11 +163,57 @@ public class RSA {
     /// <param name="sign">签名</param>
     /// <returns></returns>
     public boolean RSAVerify(String xmlPublicKey, String mySign, String sign) throws Exception {
-        PublicKey pubK = ConvertPublicKey(xmlPublicKey);
-        Signature sig = Signature.getInstance("SHA1withRSA");
+        PublicKey pubK = ConvertPublicKeyJava(xmlPublicKey);
+        Signature sig = Signature.getInstance("SHA256withRSA");
         sig.initVerify(pubK);
         byte[] un = mySign.getBytes("utf-8");
-        sig.update((new BASE64Encoder()).encode(un).getBytes());
-        return sig.verify(sign.getBytes());
+        sig.update(un);
+        return sig.verify(Hex2Bytes(sign));
+    }
+
+    /// <summary>
+    /// 转换byte
+    /// </summary>
+    /// <param name="xmlPublicKey">公钥</param>
+    /// <param name="mySign">我的签名</param>
+    /// <param name="sign">签名</param>
+    /// <returns></returns>
+
+    public byte[] Hex2Bytes(String hexStr) {
+        byte[] b = hexStr.getBytes();
+        if (b.length % 2 != 0) {
+            throw new IllegalArgumentException("长度不是偶数");
+        } else {
+            byte[] b2 = new byte[b.length / 2];
+
+            for (int n = 0; n < b.length; n += 2) {
+                String item = new String(b, n, 2);
+                b2[n / 2] = (byte) Integer.parseInt(item, 16);
+            }
+
+            return b2;
+        }
+    }
+    /// <summary>
+    /// 字符串
+    /// </summary>
+    /// <param name="xmlPublicKey">公钥</param>
+    /// <param name="mySign">我的签名</param>
+    /// <param name="sign">签名</param>
+    /// <returns></returns>
+
+    public String Bytes2Hex(byte[] bytes) {
+        String hs = "";
+        String stmp = "";
+
+        for (int n = 0; n < bytes.length; ++n) {
+            stmp = Integer.toHexString(bytes[n] & 255);
+            if (stmp.length() == 1) {
+                hs = hs + "0" + stmp;
+            } else {
+                hs = hs + stmp;
+            }
+        }
+        return hs.toUpperCase();
     }
 }
