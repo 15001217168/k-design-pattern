@@ -37,6 +37,7 @@
         <module name="proxy-pattern" />
         <module name="reflect" />
         <module name="rsa" />
+        <module name="server" />
         <module name="service-locator-pattern" />
         <module name="singleton-pattern" />
         <module name="state-pattern" />
@@ -47,6 +48,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="k-cloud-server" target="1.8" />
       <module name="singletonpattern" target="1.5" />
     </bytecodeTargetLevel>
   </component>

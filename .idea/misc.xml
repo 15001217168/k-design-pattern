@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../k-cloud-master/k-cloud-server/pom.xml" />
       </list>
     </option>
   </component>
